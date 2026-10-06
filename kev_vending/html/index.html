@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>kev_vending</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Pacifico&family=Bungee&family=Righteous&family=VT323&family=JetBrains+Mono:wght@500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="creator.css">
+</head>
+<body>
+  <!-- Definiciones globales de la moneda (degradados metálicos + relieve) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <radialGradient id="kvField" cx="38%" cy="32%" r="78%">
+        <stop offset="0" stop-color="#f4f5f6"/>
+        <stop offset=".45" stop-color="#cfd3d7"/>
+        <stop offset=".8" stop-color="#a3a9af"/>
+        <stop offset="1" stop-color="#868c93"/>
+      </radialGradient>
+      <linearGradient id="kvRim" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fbfbfc"/>
+        <stop offset=".3" stop-color="#a7adb3"/>
+        <stop offset=".55" stop-color="#eceef0"/>
+        <stop offset=".8" stop-color="#7c828a"/>
+        <stop offset="1" stop-color="#c5c9cd"/>
+      </linearGradient>
+      <linearGradient id="kvShine" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+        <stop offset=".35" stop-color="#fff" stop-opacity="0"/>
+        <stop offset=".7" stop-color="#000" stop-opacity="0"/>
+        <stop offset="1" stop-color="#000" stop-opacity=".25"/>
+      </linearGradient>
+      <filter id="kvEmboss" x="-10%" y="-10%" width="120%" height="120%">
+        <feGaussianBlur in="SourceAlpha" stdDeviation="0.7" result="blur"/>
+        <feSpecularLighting in="blur" surfaceScale="2.2" specularConstant="1" specularExponent="16" lighting-color="#ffffff" result="spec">
+          <feDistantLight azimuth="225" elevation="42"/>
+        </feSpecularLighting>
+        <feComposite in="spec" in2="SourceAlpha" operator="in" result="specIn"/>
+        <feOffset in="SourceAlpha" dx=".9" dy=".9" result="off"/>
+        <feFlood flood-color="#3c4146" flood-opacity=".55"/>
+        <feComposite in2="off" operator="in" result="shadow"/>
+        <feMerge>
+          <feMergeNode in="shadow"/>
+          <feMergeNode in="SourceGraphic"/>
+          <feMergeNode in="specIn"/>
+        </feMerge>
+      </filter>
+      <linearGradient id="coilGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffffff"/>
+        <stop offset=".45" stop-color="#b4bac1"/>
+        <stop offset="1" stop-color="#596068"/>
+      </linearGradient>
+      <path id="kvArcTop" d="M -73 0 A 73 73 0 0 1 73 0"/>
+      <path id="kvArcBot" d="M -82 0 A 82 82 0 0 0 82 0"/>
+    </defs>
+  </svg>
+
+  <div id="app" class="hidden">
+    <div class="vignette"></div>
+
+    <!-- ================= VENDING / CAFÉ ================= -->
+    <div id="vendScreen">
+      <div class="stage" id="stage">
+        <div class="machine" id="machine">
+          <div class="m-sign" id="mSign">
+            <div class="m-logo" id="brandName">eCola</div>
+            <div class="m-tagline" id="brandTag">BEBIDAS FRÍAS</div>
+            <i class="m-sweep"></i>
+          </div>
+
+          <div class="m-body">
+            <div class="m-left">
+              <!-- vitrina (vending) -->
+              <div class="m-window" id="mWindow">
+                <i class="m-lamp"></i>
+                <div class="shelves" id="shelves"></div>
+                <i class="m-glass"></i>
+              </div>
+
+              <!-- menú (café) -->
+              <div class="c-menu" id="cMenu"></div>
+              <div class="sugar" id="sugarRow">
+                <span class="sugar-label">AZÚCAR</span>
+                <button class="sbtn" id="sugarMinus">−</button>
+                <div class="sugar-cubes" id="sugarCubes"><i></i><i></i><i></i><i></i><i></i></div>
+                <button class="sbtn" id="sugarPlus">+</button>
+                <span class="sugar-txt" id="sugarTxt">NORMAL</span>
+              </div>
+              <div class="brew" id="brew">
+                <div class="brew-light"></div>
+                <div class="brew-head"><i class="nozzle-l"></i><i class="nozzle-r"></i></div>
+                <div class="brew-stream" id="brewStream"></div>
+                <div class="steam" id="steam"><i></i><i></i><i></i><i></i></div>
+                <div class="ccup" id="ccup">
+                  <div class="ccup-liq" id="ccupLiq"><i class="ccup-foam" id="ccupFoam"></i></div>
+                  <div class="ccup-sleeve"></div>
+                  <div class="ccup-cubes" id="ccupCubes"></div>
+                </div>
+                <div class="brew-grill"></div>
+                <div class="brew-status" id="brewStatus">ELIJA SU BEBIDA</div>
+              </div>
+
+              <!-- bahía de salida (vending) -->
+              <div class="m-bay" id="mBay">
+                <div class="bay-in" id="bayIn"></div>
+                <div class="bay-flap"><span>EMPUJE</span></div>
+              </div>
+            </div>
+
+            <div class="m-ctrl">
+              <div class="lcd" id="lcd">
+                <div class="lcd-top"><span id="lcdTop">INSERTE MONEDAS</span></div>
+                <div class="lcd-main" id="lcdMain">Q 0.00</div>
+                <div class="lcd-bar hidden" id="lcdBarWrap"><i id="lcdBar"></i></div>
+              </div>
+
+              <div class="slot-plate" id="slot">
+                <span class="slot-q">Q1</span>
+                <div class="slot-hole"></div>
+                <div class="slot-led"><i></i><i></i><i></i></div>
+              </div>
+              <div class="slot-note">SOLO MONEDAS DE <b>UN QUETZAL</b></div>
+
+              <div class="keypad" id="keypad"></div>
+
+              <button class="brew-btn" id="brewBtn">
+                <svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="44"/><circle class="ring" id="brewRing" cx="50" cy="50" r="44"/></svg>
+                <span id="brewBtnTxt">PREPARAR</span>
+              </button>
+
+              <div class="return-wrap">
+                <button class="return-btn" id="returnBtn" title="Devolver monedas"><i></i></button>
+                <span>DEVOLVER</span>
+              </div>
+
+              <div class="cup">
+                <div class="cup-hole" id="cupHole"></div>
+                <span class="cup-label">CAMBIO</span>
+              </div>
+            </div>
+          </div>
+          <div class="m-feet"><i></i><i></i></div>
+        </div>
+      </div>
+
+      <!-- Monedero del jugador -->
+      <div class="pocket" id="pocket">
+        <div class="pocket-head">
+          <div class="pocket-icon"></div>
+          <div class="pocket-title">TU MONEDERO<small>Monedas de Q1 disponibles</small></div>
+          <div class="pocket-count" id="pocketCount">×0</div>
+        </div>
+        <div class="coins" id="coins"></div>
+        <div class="pocket-hint">
+          <span><kbd>Arrastra</kbd> a la ranura</span>
+          <span><kbd>Doble clic</kbd> meter rápido</span>
+          <span><kbd>Mouse encima</kbd> ver reverso</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ FUENTE DE SODAS / SLUSH / JUGOS ============ -->
+    <div id="dispScreen" class="hidden">
+      <div class="disp-wrap" id="dispWrap">
+        <div class="cupstack" id="cupStack">
+          <div class="card-title">VASOS</div>
+          <div class="cs-list" id="csList"></div>
+          <div class="cs-hint">Clic para agarrar un vaso</div>
+        </div>
+
+        <div class="dm" id="dm">
+          <div class="dm-head" id="dmHead"><span id="dmBrand">eCola</span><small id="dmSub">SELF SERVICE</small><i class="m-sweep"></i></div>
+          <div class="dm-tanks" id="dmTanks"></div>
+          <div class="dm-taps" id="dmTaps"></div>
+          <div class="dm-bay" id="dmBay">
+            <div id="streams"></div>
+            <div class="dm-tray"><div class="grill"></div></div>
+          </div>
+        </div>
+
+        <div class="dside">
+          <div class="card-title">TU BEBIDA</div>
+          <div class="cashbox"><span>EFECTIVO</span><b id="dCash">Q 0</b></div>
+          <div class="gauge">
+            <div class="gauge-target"></div>
+            <div class="meter-fill" id="meterFill"></div>
+            <div class="meter-ice" id="meterIce"></div>
+            <span id="meterTxt">0%</span>
+          </div>
+          <div class="gauge-legend"><span>VACÍO</span><span class="ok">ZONA PERFECTA</span></div>
+          <div class="dinfo" id="dInfo">Agarra un vaso de la izquierda.</div>
+          <div class="rating hidden" id="rating"></div>
+          <button id="btnLid" class="dbtn primary" disabled>Tapar y llevar</button>
+          <button id="btnTrash" class="dbtn ghost">Tirar vaso</button>
+          <div class="dhelp">
+            <span><kbd>Mantén</kbd> la palanca para servir</span>
+            <span><kbd>Arrastra</kbd> el vaso a otra boquilla</span>
+            <span>Llena hasta la <b>línea</b> sin rebalsar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="keys"><kbd>ESC</kbd> <span id="escTxt">Salir y recoger el cambio</span></div>
+  </div>
+
+  <!-- ================= CREADOR (admins) ================= -->
+  <div id="creator" class="hidden"></div>
+
+  <div class="toast" id="toast"><i class="toast-ic"></i><span id="toastTxt"></span></div>
+
+  <script src="app.js"></script>
+  <script src="creator.js"></script>
+</body>
+</html>

@@ -1,7 +1,37 @@
-# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v3
+# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v4
 
 Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `ensure tienda_la_bendicion` en tu `server.cfg`.
 **Reemplaza la versión anterior y quita el recurso viejo `anarchy_247`**, porque pisan los mismos archivos.
+
+## Nuevo en la v4: fachada en 7 de las 9 tiendas
+
+Ahora cada tienda tiene su propia fachada "Tienda La Bendición", hecha a la medida de su edificio a partir de tus capturas.
+Tapa todos los letreros 24/7, las franjas verdes, "SUPERMARKET", los murales pintados y los banners "DAIRY CANDY BEER".
+Lleva revestimiento amarillo, molduras blancas y letreros que brillan de noche.
+
+| Tienda | Qué se tapó | Vista previa |
+|---|---|---|
+| Strawberry | Letrero 24/7, "OPEN 24 HOURS" (desde la v3) | `previews/1_fachada_antes_despues.png` |
+| Downtown Vinewood | Caja de luz 24/7 sobre la puerta, fachada de piedra revestida | `previews/fachadas/1_vinewood_antes_despues.jpg` |
+| Tataviam (Palomino Fwy) | Franja verde larga, panel 24/7 grande y mural "24/7 SUPERMARKET" | `previews/fachadas/2_tataviam_antes_despues.jpg` |
+| Banham Canyon | Los 2 letreros 24/7 del techo y los 2 banners verticales | `previews/fachadas/3_banham_canyon_antes_despues.jpg` |
+| Chumash | Franja verde, letras "SUPERMARKET" del techo, logos de las esquinas y los 2 banners | `previews/fachadas/4_chumash_antes_despues.jpg` |
+| Harmony | Letrero 24/7 sobre el toldo, letrero "GROCERY", mural "MARKET" y franja roja. El espectacular de helado se queda (no es de la 24/7) | `previews/fachadas/5_harmony_antes_despues.jpg` |
+| Sandy Shores | Letreros del edificio que trae el mapeo | `previews/fachadas/6_sandy_shores_geometria.jpg` |
+| Grand Senora y Paleto Bay | **Pendientes**: me falta su captura | — |
+
+Cómo se hizo: la posición exacta de cada tienda sale de los objetos de su interior (error < 1 mm). Con cada captura se calculó la cámara
+y se midió dónde está cada letrero viejo. Las vistas previas son una simulación de la fachada nueva proyectada sobre tu captura.
+Una segunda pasada revisó cada tienda por separado: que el letrero viejo no se asome por delante desde ángulos de ±45 a 75°,
+que nada choque con bancas, máquinas o postes, y que no haya parpadeo (caras encimadas).
+
+Para revisar en el juego (desde una sola foto no se puede medir todo):
+- **Vinewood**: el lado izquierdo de la fachada estaba tapado por tu personaje en la captura; puede quedar una franja de piedra.
+- **Tataviam**: el extremo derecho de la franja no salía en la foto. La cubrí hasta 17 m, pero si la vieja sigue más allá, avísame.
+- **Harmony**: si a la izquierda del toldo se asoma la franja roja, se agrega una moldura más.
+- Las cajas que tapan los letreros viejos son más hondas de lo que parecen en la foto; así quedan tapados aunque el letrero viejo sobresalga más.
+
+Rendimiento: cada fachada es un modelo de 1 a 8 KB con distancia de dibujado de 250 m. Las 7 comparten una sola textura (`bend_ext_txd.ytd`, 0.8 MB).
 
 ## Qué se corrigió en la v3 (tu reporte)
 
@@ -23,8 +53,8 @@ entrada, pasillos, caja, oficina, casillero, vitrinas y enfriadores.
   1. Si abres CodeWalker (con tu GTA) y nos mandas los nombres de textura de `v_ilev_247door.ydr`, hacemos un script que
      cambie solo esas texturas.
   2. Hacer puertas propias. Ojo: hay que reconfigurar las cerraduras de las 24/7.
-- **Otras 24/7 del mapa**: el interior nuevo sale en todas (comparten el mismo interior). La fachada nueva solo está en Strawberry,
-  y el exterior de Sandy Shores ya venía rediseñado desde la v2. Si quieres la fachada nueva en otra tienda, dime cuál.
+- **Otras 24/7 del mapa**: el interior nuevo sale en todas (comparten el mismo interior). La fachada nueva está en 7 de las 9;
+  faltan Grand Senora y Paleto Bay (ver `CAPTURAS_FACHADAS.md`).
 - **Banquitos detrás de la caja**: las 2 entidades `hash_D712F48D` son `sf_int1_bar_stool1` (DLC The Contract). Se ven si tu
   servidor usa ese game build o uno más nuevo.
 
@@ -46,9 +76,10 @@ Las repisas tienen colisión, así que los scripts de colocación apoyan los ite
 - `tienda_la_bendicion/stream/`
   - `v_int_66.ytyp` (interior), `v_66_shop711.ydr` (cuarto), `v_shop_247.ybn` (colisión corregida)
   - Muebles: `bend_chiller*.ydr`, `bend_shelf.ydr`. Ventanas: `bend_win_*.ydr`. Comparten la textura `bend_props_txd.ytd`
-  - Fachada de Strawberry: `bend_ext_strawberry.ydr/.ymap`, `bend_ext.ytyp`, `bend_ext_txd.ytd`
+  - Fachadas: `bend_ext_<tienda>.ydr/.ymap` (strawberry, hw1_02 Vinewood, ch3_03 Tataviam, ch1_11 Banham, ch1_12 Chumash,
+    cs6_01 Harmony, cs4_10 Sandy), más `bend_ext.ytyp` y `bend_ext_txd.ytd`
   - Exterior de Sandy Shores: `cs4_10_247.ydr` + `lr_cs4_10_3.ybn`
 - `previews/`: antes/después de la fachada (simulación proyectada sobre tu captura), interior y mapa caminable.
 - `texturas_png/`: todas las texturas nuevas en PNG, por si quieres retocar colores o textos.
 
-Pesa 3.5 MB en total. Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.
+Pesa 4.1 MB en total. Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.

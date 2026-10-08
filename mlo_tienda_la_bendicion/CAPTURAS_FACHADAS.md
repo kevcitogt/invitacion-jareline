@@ -19,8 +19,8 @@ cada uno es distinto, así que para que el letrero y el revestimiento queden jus
 | Banham Canyon (Ineseno Rd) ✅ hecha | -3038.5, 589.6, 6.9 | -3028.6, 592.8, 7.9 | 108 |
 | Chumash (Barbareno Rd) ✅ hecha | -3239.9, 1004.5, 11.8 | -3229.5, 1003.6, 12.8 | 85 |
 | Tataviam (Palomino Fwy) ✅ hecha | 2559.4, 385.4, 107.6 | 2569.8, 385.0, 108.6 | 88 |
-| Paleto Bay (Great Ocean Hwy) ⏳ falta captura | 1731.2, 6411.4, 34.0 | 1726.6, 6402.1, 35.0 | 334 |
-| Grand Senora (Senora Fwy) ⏳ falta captura | 2682.0, 3282.5, 54.2 | 2691.1, 3277.5, 55.2 | 61 |
+| Paleto Bay (Great Ocean Hwy) ✅ hecha | 1731.2, 6411.4, 34.0 | 1726.6, 6402.1, 35.0 | 334 |
+| Grand Senora (Senora Fwy) ✅ hecha | 2682.0, 3282.5, 54.2 | 2691.1, 3277.5, 55.2 | 61 |
 | Harmony (Route 68) ✅ hecha | 544.2, 2672.7, 41.2 | 542.8, 2683.0, 42.2 | 188 |
 
 En Sandy Shores el edificio ya venía en el mapeo y ya está rediseñado. Mándame también su captura para revisar que no se asome

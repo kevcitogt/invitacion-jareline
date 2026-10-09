@@ -1,4 +1,4 @@
-# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5
+# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.1
 
 Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `ensure tienda_la_bendicion` en tu `server.cfg`.
 **Reemplaza la versión anterior y quita el recurso viejo `anarchy_247`**, porque pisan los mismos archivos.
@@ -12,11 +12,18 @@ Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `e
 - **Grand Senora y Paleto Bay hechas** con tus capturas (`7_grand_senora_antes_despues.jpg`, `8_paleto_bay_antes_despues.jpg`).
 - Todas las fachadas nuevas usan márgenes de profundidad grandes, aprendidos del fallo de Harmony.
 
-### Pendiente (necesita datos del juego)
-- **El interior cambia al 24/7 viejo cuando te alejas.** De lejos el juego dibuja un modelo simplificado (LOD) del interior
-  original en lugar del interior real. El mapeo original solo lo escondió en Strawberry. Para esconderlo en las demás tiendas hace
-  falta el nombre exacto de ese modelo en cada una, y está en los archivos del juego (ver la respuesta en el chat).
+## Nuevo en la v5.1: el interior ya no cambia al 24/7 cuando te alejas
+
+En el juego original, el interior de cada 24/7 solo se dibuja hasta **12 m**. Más lejos, el juego lo cambia por un modelo
+simplificado (`<mapa>_247_lod`, dentro de `<mapa>_247_slod_children.ydd`) que lleva una "foto" del interior viejo: anaqueles
+llenos, paredes rojas y logos 24/7. Con los archivos que exportaste de CodeWalker se rehízo esa foto con **nuestro** interior
+(paredes amarillas, techo, piso y anaqueles vacíos) y se reemplazaron los modelos de lejos de las 9 tiendas: archivos
+`*_247_slod_children.ydd` en `stream/` (unos 165 KB cada uno). Antes y después en
+`previews/fachadas/9_interior_de_lejos_antes_despues.jpg`.
+
+### Pendiente
 - **Colisión adentro en Banham**: falta saber en qué punto exacto se topa.
+- **Edificio completo**: los archivos de Strawberry ya están en el repo (`strawberry_gta/`) para reconstruirlo entero.
 
 ## Fachadas (v4)
 
@@ -96,4 +103,4 @@ Las repisas tienen colisión, así que los scripts de colocación apoyan los ite
 - `previews/`: antes/después de la fachada (simulación proyectada sobre tu captura), interior y mapa caminable.
 - `texturas_png/`: todas las texturas nuevas en PNG, por si quieres retocar colores o textos.
 
-Pesa 4.2 MB en total. Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.
+Pesa 5.7 MB en total. Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.

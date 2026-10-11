@@ -1,4 +1,4 @@
-# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.2
+# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.3
 
 Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `ensure tienda_la_bendicion` en tu `server.cfg`.
 **Reemplaza la versión anterior y quita el recurso viejo `anarchy_247`**, porque pisan los mismos archivos.
@@ -23,11 +23,17 @@ acomodo y se metieron en los modelos de las tiendas donde aparecen (el edificio 
 | `hw_23_rsn_sjm_cnr_mall95v3` | Logo 24/7 grande | Emblema + "TIENDA LA BENDICIÓN" | Grand Senora, Harmony |
 | `im_signs18` | Letrero blanco "24/7 SUPERMARKET" | Letrero "TIENDA LA BENDICIÓN · ABARROTES" | Grand Senora |
 | `gz_v_247_posters05/06` | Pósters Sprunk / eCola con logo 24/7 | Pósters de La Bendición | Sandy Shores |
+| `ch_02_rsn_247mainlogo/supermarketlogo` | Logo 24/7 y cinta "SUPERMARKET" | Emblema y "TIENDA LA BENDICIÓN" | Banham, Chumash |
+| `ch_02_rsn_247verticallogo_0001` | Banner naranja "DAIRY CANDY BEER" | Banner mostaza "LECHE DULCES SODAS" | Banham, Chumash |
+| `ch_02_rsn_247poster_0001-3` | Pósters 24/7 | Pósters de La Bendición | Banham, Chumash |
+| `hw_23_rsn_sjm_cnr_mall95v2/v3` (otra copia) | Franja verde y logo | Igual que arriba | Tataviam, Chumash, Paleto |
+| `cs_rsl_24_7_sign`, `hw107_rncm_247_sig` | Letrero 24/7 y tira de pósters | Panel mostaza "BENDICIÓN" y pósters | Paleto |
+| `gz_v_247_logo_a`, `gz_v_247_signs01` | Logo 24/7 y letreros "CHILLED FOOD / COLD BEER" | Los de La Bendición | Tataviam, Grand Senora |
 
 Archivos en `stream/`: `cs4_02_247branding.ydr`, `cs4_02_247branding+hidr.ytd`, `cs4_02_bb_247.ydr`, `cs6_01_247_market_det.ydr`,
 `cs4_10_247_ovr001.ydr`, `cs4_10_247_ovr001+hidr.ytd`. Antes y después: `previews/fachadas/10_texturas_marca_antes_despues.jpg`.
-Para las demás tiendas falta encontrar en qué archivo del juego está su letrero: `herramientas/buscar_marca_247.py` los busca
-dentro de tu zip.
+En la v5.3 se agregaron Banham, Chumash, Tataviam y Paleto (`11_texturas_marca_2_antes_despues.jpg`). Strawberry y Vinewood
+no tienen la marca dentro de sus modelos (ahí el letrero es la fachada encimada).
 
 ## Nuevo en la v5.1: el interior ya no cambia al 24/7 cuando te alejas
 
@@ -120,4 +126,4 @@ Las repisas tienen colisión, así que los scripts de colocación apoyan los ite
 - `previews/`: antes/después de la fachada (simulación proyectada sobre tu captura), interior y mapa caminable.
 - `texturas_png/`: todas las texturas nuevas en PNG, por si quieres retocar colores o textos.
 
-Pesa 8.4 MB en total. Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.
+Pesa unos 17 MB en total (por los modelos de edificio repintados). Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.

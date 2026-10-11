@@ -1,4 +1,4 @@
-# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.4
+# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.5
 
 Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `ensure tienda_la_bendicion` en tu `server.cfg`.
 **Reemplaza la versión anterior y quita el recurso viejo `anarchy_247`**, porque pisan los mismos archivos.
@@ -11,6 +11,16 @@ Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `e
   35-40 cm delante de todo eso.
 - **Grand Senora y Paleto Bay hechas** con tus capturas (`7_grand_senora_antes_despues.jpg`, `8_paleto_bay_antes_despues.jpg`).
 - Todas las fachadas nuevas usan márgenes de profundidad grandes, aprendidos del fallo de Harmony.
+
+## Corregido en la v5.5
+
+- **"Fondo amarillo" que se asomaba detrás de algunas tiendas** (por ejemplo, el costado de Banham): en las esquinas donde el
+  edificio del juego es más angosto que el interior, se veía el interior amarillo desde afuera. Ahora el interior tiene una
+  "piel" exterior de concreto gris neutro siguiendo su contorno (menos el frente), y el techo por fuera también es gris. Por
+  dentro no cambia nada.
+- **Letreros laterales "raros"** (Harmony, Chumash, Tataviam, Paleto, Grand Senora): el letrero usa cada cuarto de la textura por
+  separado y el texto quedaba cortado ("ABIE…"). Se rehízo respetando esas zonas: "ABIERTO · TODOS LOS DÍAS", emblema y
+  "LA BENDICIÓN". Vista: `previews/fachadas/13_correccion_fondo_y_letrero.jpg`.
 
 ## Nuevo en la v5.4: paredes pintadas de mostaza
 

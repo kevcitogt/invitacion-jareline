@@ -1,4 +1,4 @@
-# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.3
+# MLO "Tienda La Bendición" (antes 24/7 Supermarket) — v5.4
 
 Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `ensure tienda_la_bendicion` en tu `server.cfg`.
 **Reemplaza la versión anterior y quita el recurso viejo `anarchy_247`**, porque pisan los mismos archivos.
@@ -11,6 +11,17 @@ Para instalarlo, copia la carpeta `tienda_la_bendicion/` a `resources/` y pon `e
   35-40 cm delante de todo eso.
 - **Grand Senora y Paleto Bay hechas** con tus capturas (`7_grand_senora_antes_despues.jpg`, `8_paleto_bay_antes_despues.jpg`).
 - Todas las fachadas nuevas usan márgenes de profundidad grandes, aprendidos del fallo de Harmony.
+
+## Nuevo en la v5.4: paredes pintadas de mostaza
+
+En las tiendas donde el modelo del edificio es solo la 24/7 se pintaron también las paredes (piedra, ladrillo, yeso y concreto)
+de color mostaza, conservando el relieve de la textura. Puertas, ventanas, madera y techos quedan igual:
+- **Harmony** (`cs6_01_247_market.ydr` + `+hidr.ytd`)
+- **Sandy Shores** (el exterior del mapeo `cs4_10_247.ydr`: lo negro pasa a mostaza y lo verde a rojo ladrillo, más `cs4_10_247+hidr.ytd`)
+- **Paleto Bay** (solo el ladrillo gris de la tienda dentro de `cs2_11_gasstation_b.ydr`; la gasolinera queda igual)
+
+**Grand Senora** no se pudo: el modelo de su edificio no venía en los archivos exportados. En las demás tiendas el edificio se
+comparte con otros locales, así que solo se cambiaron los rótulos. Vista: `previews/fachadas/12_paredes_pintadas_paleto_sandy_harmony.png`.
 
 ## Nuevo en la v5.2: texturas de marca pintadas en los edificios
 
@@ -126,4 +137,4 @@ Las repisas tienen colisión, así que los scripts de colocación apoyan los ite
 - `previews/`: antes/después de la fachada (simulación proyectada sobre tu captura), interior y mapa caminable.
 - `texturas_png/`: todas las texturas nuevas en PNG, por si quieres retocar colores o textos.
 
-Pesa unos 17 MB en total (por los modelos de edificio repintados). Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.
+Pesa unos 26 MB en total (por los modelos de edificio repintados). Todas las texturas llevan mipmaps, las que no usan transparencia van en DXT1, y los muebles y ventanas comparten una sola textura.
